@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content_title %}
+    <h2>Lista personelu</h2>
+{% endblock %}
+
+{% block content %}
+    <ol>
+    {% for object in object_list%}
+        <li>{{ object.first_name }}
+            {{ object.last_name }} Stanowisko: {{ object.staff_type }}{{ object.begin_work }}{{ object.end_work }}
+        <a href='/edit_staff/{{ object.pk }}'>Edytuj </a>
+        <a href='/delete_staff/{{ object.pk }}'>Kasuj </a>
+        <a href='/create_staff_schedule/{{ object.pk }}'>Utwórz grafik </a>
+        <a href='/edit_staff_schedule/{{ object.pk }}'>Edytuj grafik</a></li><br>
+    {%  endfor %}
+    </ol>
+{% endblock %}
+{% block additional %}
+    <li><a href='/add_staff/'>Dodaj personel</a></li>
+{% endblock additional %}

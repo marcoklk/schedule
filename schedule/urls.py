@@ -16,6 +16,27 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from scheduler.views import AddStaffView, AddUnitView, AddShiftsView, LoginView, LogoutView, GrafikView, ListUnitsView, \
+    ListShiftsView, ListStaffView, AddPartTimeView, AddBaseTimeView, EditUnitView, EditStaffView, AddYearScheduleView, \
+    ListYearSchedulesView, FillYearScheduleView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', GrafikView.as_view(), name="grafik"),
+    path('add_staff/', AddStaffView.as_view(), name="add-staff"),
+    path('add_unit/', AddUnitView.as_view(), name="add-unit"),
+    path('add_shifts/', AddShiftsView.as_view(), name="add-shifts"),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
+    path('list_units/', ListUnitsView.as_view(), name='list-units'),
+    path('list_shifts/', ListShiftsView.as_view(), name='list-shifts'),
+    path('list_staff/', ListStaffView.as_view(), name='list-staff'),
+    path('parttime/', AddPartTimeView.as_view(), name='parttime'),
+    path('basetime/', AddBaseTimeView.as_view(), name='basetime'),
+    path('edit_unit/<int:pk>/', EditUnitView.as_view(), name='edit-unit'),
+    path('edit_staff/<int:pk>/', EditStaffView.as_view(), name='edit-staff'),
+    path('add_yearschedule/', AddYearScheduleView.as_view(), name='add-yearschedule'),
+    path('list_yearschedules/', ListYearSchedulesView.as_view(), name='list-yearschedules'),
+    path('fill_yearschedule/<int:pk>', FillYearScheduleView.as_view(), name='fill-yearschedule_pk'),
+    path('fill_yearschedule/', FillYearScheduleView.as_view(), name='fill-yearschedule'),
 ]

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content_title %}
+    <h2>Lista typów dyżurów</h2>
+{% endblock %}
+
+{% block content %}
+    <ul>
+    {% for object in object_list%}
+        <li><a href='/shifts/{{ object.pk }}'>{{object.name}}</a>
+            {{ object.describe }}
+        <a href='/edit_shifts/{{ object.pk }}'>Edytuj</a>
+        <a href='/delete_shifts/{{ object.pk }}'>Kasuj</a></li>
+    {%  endfor %}
+    </ul>
+{% endblock %}
+{% block additional %}
+    <li><a href='/add_shifts/'>Dodaj rodzaj dyżuru</a></li>
+{% endblock additional %}

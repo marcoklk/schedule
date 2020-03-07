@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <ul>
+    {% for object in object_list%}
+        <li><a href='/unit/{{ object.pk }}'>{{object.name}}</a>
+        <a href='/edit_unit/{{ object.pk }}'>Edytuj</a>
+        <a href='/delete_unit/{{ object.pk }}'>Kasuj</a></li>
+    {%  endfor %}
+    </ul>
+{% endblock %}
+{% block additional %}
+    <li><a href='/add_unit/'>Dodaj jednostkę organizacyjną</a></li>
+{% endblock additional %}

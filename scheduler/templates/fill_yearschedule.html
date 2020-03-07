@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content_title %}
+    <h2>Grafik</h2>
+{% endblock %}
+
+{% block content %}
+<table>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        {% for day in days%}
+            <td>{{day}}</td>
+        {%  endfor %}
+    </tr>
+    <tr>
+        <td colspan="3">Nazwisko i imię</td>
+        {% for day in days%}
+            <td>{{1}}</td>
+        {%  endfor %}
+
+    </tr>
+
+    {% for employee, schedules_by_days in schedules_by_staff.items %}
+        <tr>
+            <td>{{1}}</td>
+            <td>{{employee.last_name}}</td>
+            <td>Za</td>
+
+            {% for day, schedule in schedules_by_days.items %}
+                <td>
+                    {{schedule.plan_day}}
+                </td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <td></td>
+            <td>{{employee.first_name}}</td>
+            <td>Zr</td>
+            {% for day, schedule in schedules_by_days.items %}
+                <td>
+                    {{schedule.done_day}}
+                </td>
+            {% endfor %}
+        </tr>
+    {%  endfor %}
+
+
+</table>
+{% endblock %}
+
+{% block additional %}
+
+{% endblock additional %}

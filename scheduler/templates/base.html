@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% block logo %}
+
+    {% endblock %}
+    {% block page_content %}
+       {% block page_title %}
+            <h1>Grafiki dla personelu medycznego</h1>
+       {% endblock %}
+       {% block content_title %}
+                <h2>Klasy:</h2>
+       {% endblock %}
+       {% block content %}
+                <ol>
+                    {% for object in objects %}
+                        {% block element %}
+                            <li><a href='/{% block link %}class{% endblock %}/{}'>{}</a></li>
+                        {% endblock %}
+                    {% endfor %}
+                </ol>
+       {% endblock %}
+       {% block additional %}
+       {% endblock %}
+       {% block login %}
+            <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="{{ submit_value|default:"Wyślij" }}">
+                </form>
+               {% if user.is_authenticated %}
+                   Witaj {{ user }} - <a href="/logout/">Wyloguj</a>
+               {% else %}
+                   Witaj nieznajomy :) - <a href="/login/">Zaloguj</a>
+               {% endif %}
+        {% endblock login %}
+    <br><br>
+        {% block foot %}
+            <a href='/'>Strona główna</a>
+        {% endblock %}
+    {% endblock %}
+</body>
+</html>

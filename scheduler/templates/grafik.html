@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content_title %}
+        <h2>Menu główne</h2>
+{% endblock %}
+
+{% block content %}
+<ol>
+   <li>Pracownik  <a href="/add_staff/">Dodaj </a> <a href="/list_staff/"> Lista</a></li> <br><br>
+   <li>Rodzaj dyżuru  <a href="/add_shifts/">Dodaj </a> <a href="/list_shifts/"> Lista</a> </li><br><br>
+   <li>Jednostki organizacyjne <a href="/add_unit/">Dodaj </a> <a href="/list_units/"> Lista</a></li><br><br>
+   <li>Grafik dla jednostki <a href="/add_yearschedule/">Dodaj </a><a href="/list_yearschedules/"> Lista</a></li><br><br><br>
+</ol>
+{% endblock %}
+
+
