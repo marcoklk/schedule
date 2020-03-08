@@ -21,9 +21,9 @@ class AddUnitForm(forms.ModelForm):
         fields = '__all__'
 
 
-class AddShiftsForm(forms.ModelForm):
+class AddShiftForm(forms.ModelForm):
     class Meta:
-        model = Shifts
+        model = Shift
         exclude = ['shift_id']
 
 

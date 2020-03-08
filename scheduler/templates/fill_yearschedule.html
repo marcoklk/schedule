@@ -2,52 +2,92 @@
 
 {% block content_title %}
     <h2>Grafik</h2>
+    {{ day|date:"l" }}
 {% endblock %}
 
 {% block content %}
-<table>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        {% for day in days%}
-            <td>{{day}}</td>
-        {%  endfor %}
-    </tr>
-    <tr>
-        <td colspan="3">Nazwisko i imię</td>
-        {% for day in days%}
-            <td>{{1}}</td>
-        {%  endfor %}
-
-    </tr>
-
-    {% for employee, schedules_by_days in schedules_by_staff.items %}
+    <table class="table-border">
+        <thead>
         <tr>
-            <td>{{1}}</td>
-            <td>{{employee.last_name}}</td>
-            <td>Za</td>
-
-            {% for day, schedule in schedules_by_days.items %}
-                <td>
-                    {{schedule.plan_day}}
-                </td>
+            <th>
+                <div>&nbsp;</div>
+            </th>
+            <th>
+                <div>&nbsp;</div>
+            </th>
+            <th>
+                <div>&nbsp;</div>
+            </th>
+            {% for day in days %}
+                {% if day|date:"w" == "6" %}
+                    <th class="sunday"><span class="vertical-data">{{ day|date:'Y-m-d' }}</span></th>
+                {% else %}
+                    <th>
+                        <div class="vertical-data">{{ day|date:'Y-m-d' }}</div>
+                    </th>
+                    {#           <th>0</th>#}
+                {% endif %}
             {% endfor %}
+
         </tr>
+        </thead>
+        <tbody>
         <tr>
             <td></td>
-            <td>{{employee.first_name}}</td>
-            <td>Zr</td>
-            {% for day, schedule in schedules_by_days.items %}
-                <td>
-                    {{schedule.done_day}}
-                </td>
+            <td>Nazwisko i imię</td>
+            <td></td>
+            {% for day in days %}
+                {% if day|date:"w" == "6" %}
+                    <td class="sunday" align="center">{{ forloop.counter }}</td>
+                    {#            {% if day|date:'Y-m-d' == "2020-02-01" %}#}
+                    {#                <td align="center">{{ day|date:"w" }}</td>#}
+                    {#                <td align="center">{{1}}</td>#}
+                {% else %}
+                    <td align="center">{{ forloop.counter }}</td>
+                {% endif %}
             {% endfor %}
+
         </tr>
-    {%  endfor %}
+
+        {% for employee, schedules_by_days in schedules_by_staff.items %}
+
+            <tr>
+
+                <th>{{ forloop.counter }}.</th>
+
+                <td>
+                    <div class="second-column">
+                        {{ employee.last_name }}
+                    </div>
+                </td>
+
+                <td>Za</td>
+
+                {% for day, schedule in schedules_by_days.items %}
+                    <td align="center">
+                        {{ schedule.plan_day }}
+                    </td>
+                {% endfor %}
+
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>{{ employee.first_name }}</td>
+                <td>Zr</td>
+                {% for day, schedule in schedules_by_days.items %}
+                    <td align="center">
+                        {{ schedule.done_day }}
+                    </td>
+                {% endfor %}
+            </tr>
+
+        {% endfor %}
 
 
-</table>
+        </tbody>
+
+    </table>
 {% endblock %}
 
 {% block additional %}

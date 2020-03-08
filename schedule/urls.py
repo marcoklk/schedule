@@ -16,8 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from scheduler.views import AddStaffView, AddUnitView, AddShiftsView, LoginView, LogoutView, GrafikView, ListUnitsView, \
-    ListShiftsView, ListStaffView, AddPartTimeView, AddBaseTimeView, EditUnitView, EditStaffView, AddYearScheduleView, \
+from scheduler.views import AddStaffView, AddUnitView, AddShiftView, LoginView, LogoutView, GrafikView, ListUnitsView, \
+    ListShiftView, ListStaffView, AddPartTimeView, AddBaseTimeView, EditUnitView, EditStaffView, AddYearScheduleView, \
     ListYearSchedulesView, FillYearScheduleView
 
 urlpatterns = [
@@ -25,11 +25,11 @@ urlpatterns = [
     path('', GrafikView.as_view(), name="grafik"),
     path('add_staff/', AddStaffView.as_view(), name="add-staff"),
     path('add_unit/', AddUnitView.as_view(), name="add-unit"),
-    path('add_shifts/', AddShiftsView.as_view(), name="add-shifts"),
+    path('add_shifts/', AddShiftView.as_view(), name="add-shifts"),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('list_units/', ListUnitsView.as_view(), name='list-units'),
-    path('list_shifts/', ListShiftsView.as_view(), name='list-shifts'),
+    path('list_shifts/', ListShiftView.as_view(), name='list-shifts'),
     path('list_staff/', ListStaffView.as_view(), name='list-staff'),
     path('parttime/', AddPartTimeView.as_view(), name='parttime'),
     path('basetime/', AddBaseTimeView.as_view(), name='basetime'),

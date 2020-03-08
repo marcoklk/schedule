@@ -80,14 +80,14 @@ class AddUnitView(View):
             return render(request, 'form.html',
                           {'form': form, 'submit_value': "Dodaj", "title": "Dodawanie jednostki organizacyjnej"})
 
-class AddShiftsView(View):
+class AddShiftView(View):
     def get(self, request):
-        form = AddShiftsForm()
+        form = AddShiftForm()
         return render(request, 'form.html',
                       {'form': form, 'submit_value': "Dodaj", "title": "Dodawanie rodzaju dyżuru"})
 
     def post(self, request):
-        form = AddShiftsForm(request.POST)
+        form = AddShiftForm(request.POST)
         if form.is_valid():
             form.save()
             path = request.GET.get("next")
@@ -229,8 +229,8 @@ class ListUnitsView(ListView):
     template_name = 'list_units.html'
 
 
-class ListShiftsView(ListView):
-    model = Shifts
+class ListShiftView(ListView):
+    model = Shift
     template_name = 'list_shifts.html'
 
 
