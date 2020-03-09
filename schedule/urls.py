@@ -18,7 +18,8 @@ from django.urls import path
 
 from scheduler.views import AddStaffView, AddUnitView, AddShiftView, LoginView, LogoutView, GrafikView, ListUnitsView, \
     ListShiftView, ListStaffView, AddPartTimeView, AddBaseTimeView, EditUnitView, EditStaffView, AddYearScheduleView, \
-    ListYearSchedulesView, FillYearScheduleView
+    ListYearSchedulesView, FillYearScheduleView, StaffDeleteView, UnitDeleteView, ShiftDeleteView, \
+    YearScheduleDeleteView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -39,4 +40,9 @@ urlpatterns = [
     path('list_yearschedules/', ListYearSchedulesView.as_view(), name='list-yearschedules'),
     path('fill_yearschedule/<int:pk>', FillYearScheduleView.as_view(), name='fill-yearschedule_pk'),
     path('fill_yearschedule/', FillYearScheduleView.as_view(), name='fill-yearschedule'),
+    path('delete_staff/<int:pk>/', StaffDeleteView.as_view(), name="delete-staff"),
+    path('delete_unit/<int:pk>/', UnitDeleteView.as_view(), name="delete-unit"),
+    path('delete_shift/<int:pk>/', ShiftDeleteView.as_view(), name="delete-shift"),
+    path('delete_yearschedule/<int:pk>/', YearScheduleDeleteView.as_view(), name="delete-yearschedule"),
+
 ]

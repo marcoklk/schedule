@@ -10,12 +10,13 @@
         <li>{{ object.first_name }}
             {{ object.last_name }} Stanowisko: {{ object.staff_type }}{{ object.begin_work }}{{ object.end_work }}
         <a href='/edit_staff/{{ object.pk }}'>Edytuj </a>
-        <a href='/delete_staff/{{ object.pk }}'>Kasuj </a>
-        <a href='/create_staff_schedule/{{ object.pk }}'>Utwórz grafik </a>
-        <a href='/edit_staff_schedule/{{ object.pk }}'>Edytuj grafik</a></li><br>
+            <a href='/delete_staff/{{ object.pk }}'>Kasuj </a></li><br>
+{#        <a href='/create_staff_schedule/{{ object.pk }}'>Utwórz grafik </a>#}
+{#        <a href='/edit_staff_schedule/{{ object.pk }}'>Edytuj grafik</a></li><br>#}
     {%  endfor %}
     </ol>
 {% endblock %}
 {% block additional %}
     <li><a href='/add_staff/'>Dodaj personel</a></li>
+    <br><br>
 {% endblock additional %}

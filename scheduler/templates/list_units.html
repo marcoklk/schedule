@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 
+
+{% block content_title %}
+    <h2>Lista jednostek organizacyjnych</h2>
+{% endblock %}
+
 {% block content %}
     <ul>
     {% for object in object_list%}
@@ -10,5 +15,7 @@
     </ul>
 {% endblock %}
 {% block additional %}
+    <br>
     <li><a href='/add_unit/'>Dodaj jednostkę organizacyjną</a></li>
+    <br><br>
 {% endblock additional %}

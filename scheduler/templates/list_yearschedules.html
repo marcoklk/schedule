@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block content_title %}
+    <h2>Lista grafików</h2>
+{% endblock %}
+
 {% block content %}
     <ul>
     {% for object in object_list%}
@@ -11,5 +15,7 @@
     </ul>
 {% endblock %}
 {% block additional %}
-    <li><a href='/add_yearschedule/'>Dodaj grafin dla jednostki</a></li>
+    <br>
+    <li><a href='/add_yearschedule/'>Dodaj grafik dla jednostki</a></li>
+    <br><br>
 {% endblock additional %}

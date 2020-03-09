@@ -94,7 +94,7 @@ class AddShiftView(View):
             print('Scieżka', path)
             if path is not None:
                 return redirect(path)
-            return redirect('/')
+            return redirect('list-shifts')
             # return HttpResponse("Dodano dyżur")
         else:
             return render(request, 'form.html',
@@ -158,18 +158,16 @@ class AddYearScheduleView(View):
             print('Scieżka', path)
             if path is not None:
                 return redirect(path)
-            return redirect('/')
+            return redirect('list-yearschedules')
         else:
             return render(request, 'form.html',
                           {'form': form, 'submit_value': "Dodaj", "title": "Dodawanie nowego grafiku"})
 
 
-
-
 class EditStaffView(View):
     def get(self,request, pk):
         form = AddStaffForm(instance=Staff.objects.get(pk=pk))
-        return render(request, 'form.html', {'form': form})
+        return render(request, 'form.html', {'form': form, 'submit_value': "Zatwierdź", 'title': "Edycja personelu"})
 
     def post(self, request, pk):
         form = AddStaffForm(request.POST,instance=Staff.objects.get(pk=pk))
@@ -177,13 +175,13 @@ class EditStaffView(View):
             form.save()
             return redirect('/list_staff', {'form':form})
         else:
-            return render(request, 'form.html', {'form': form})
+            return render(request, 'form.html', {'form': form, 'submit_value':"Zatwierdź",'title': "Edycja personelu"})
 
 
 class EditUnitView(View):
     def get(self,request, pk):
         form = AddUnitForm(instance=Unit.objects.get(pk=pk))
-        return render(request, 'form.html', {'form': form})
+        return render(request, 'form.html', {'form': form, 'submit_value': "Zatwierdź", 'title': "Edycja jednostki organizacyjnej"})
 
     def post(self, request, pk):
         form = AddUnitForm(request.POST,instance=Unit.objects.get(pk=pk))
@@ -191,7 +189,7 @@ class EditUnitView(View):
             form.save()
             return redirect('/list_units', {'form':form})
         else:
-            return render(request, 'form.html', {'form': form})
+            return render(request, 'form.html', {'form': form,'submit_value': "Zatwierdź", 'title': "Edycja jednostki organizacyjnej"})
 
 
 class FillYearScheduleView(View):
@@ -206,13 +204,13 @@ class FillYearScheduleView(View):
             days.append(day)
             day += timedelta(days=1)
         schedules = Schedule.objects.filter(yearschedule=yearschedule)
-        print(schedules)
+        # print(schedules)
         schedules_by_staff = {}
         for employee in staff:
             schedules_by_staff[employee] = {}
             for day in days:
                 schedules_by_staff[employee][day] = schedules.filter(date_day= day, staff=employee).first()
-        print(schedules_by_staff)
+        # print(schedules_by_staff)
         return render(request, 'fill_yearschedule.html', {'form': form, 'yearschedule': yearschedule,
                                  'days': days, 'staff':staff, 'schedules_by_staff': schedules_by_staff})
     def post(self, request, pk):
@@ -242,3 +240,32 @@ class ListStaffView(ListView):
 class ListYearSchedulesView(ListView):
     model = YearSchedule
     template_name = 'list_yearschedules.html'
+
+
+class StaffDeleteView(DeleteView):
+    model = Staff
+    template_name = 'delete.html'
+
+    def get_success_url(self):
+        return reverse('list-staff')
+
+class UnitDeleteView(DeleteView):
+    model = Unit
+    template_name = 'delete.html'
+
+    def get_success_url(self):
+        return reverse('list-units')
+
+class ShiftDeleteView(DeleteView):
+    model = Unit
+    template_name = 'delete.html'
+
+    def get_success_url(self):
+        return reverse('list-shifts')
+
+class YearScheduleDeleteView(DeleteView):
+    model = YearSchedule
+    template_name = 'delete.html'
+
+    def get_success_url(self):
+        return reverse('list-yearschedules')

@@ -1,9 +1,37 @@
 {%  extends 'base.html' %}
 
+{#{% block content_title %}#}
+{#    <h1> {{ title|default:"Formularz" }}</h1>#}
+{#{% endblock %}#}
+{##}
+{#{% block content %}#}
+{#{% endblock %}#}
+
 {% block content_title %}
     <h1> {{ title|default:"Formularz" }}</h1>
 {% endblock %}
 
 {% block content %}
+    <form method="post">
+       {% csrf_token %}
+       {{ form.as_p }}
+       <input type="submit" value="{{ submit_value|default:"Dodaj" }}">
+    </form>
 {% endblock %}
 
+{% block login %}
+
+   {% if user.is_authenticated %}
+       <br><br>
+       Witaj {{ user }} - <a href="/logout/">Wyloguj</a>
+   {% else %}
+       <br><br>
+       <form method="post">
+           {% csrf_token %}
+           {{ form.as_p }}
+           <input type="submit" value="{{ submit_value|default:"Zaloguj" }}">
+        </form>
+{#       Witaj nieznajomy :) - <a href="/login/">Zaloguj</a>#}
+        Witaj nieznajomy :)
+   {% endif %}
+{% endblock %}
