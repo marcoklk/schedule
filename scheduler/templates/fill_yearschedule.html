@@ -89,8 +89,15 @@
 
     </table>
     <br><br>
+
+
 {% endblock %}
 
 {% block additional %}
-
+ <form method="post">
+       {% csrf_token %}
+       {{ form.as_p }}
+       <input type="submit" value="{{ submit_value|default:"Dodaj" }}">
+    <br><br>
+    </form>
 {% endblock additional %}

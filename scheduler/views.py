@@ -213,6 +213,7 @@ class FillYearScheduleView(View):
         # print(schedules_by_staff)
         return render(request, 'fill_yearschedule.html', {'form': form, 'yearschedule': yearschedule,
                                  'days': days, 'staff':staff, 'schedules_by_staff': schedules_by_staff})
+
     def post(self, request, pk):
         form = FillScheduleForm(request.POST)
         if form.is_valid():
