@@ -12,6 +12,9 @@
                 <div>A</div>
             </th>
             <th>
+                <div>XYZ</div>
+            </th>
+            <th>
                 <div>B</div>
             </th>
             <th>
@@ -21,6 +24,8 @@
             {% for day in days %}
                 {% if day|date:"w" == "6" %}
                     <th class="sunday"><span class="vertical-data">{{ day|date:'Y-m-d' }}</span></th>
+                {% elif day|date:"w" == "5"%}
+                    <th class="saturday"><span class="vertical-data">{{ day|date:'Y-m-d' }}</span></th>
                 {% else %}
                     <th>
                         <div class="vertical-data">{{ day|date:'Y-m-d' }}</div>
@@ -37,11 +42,10 @@
             <td align="center">Nazwisko i imię</td>
             <td></td>
             {% for day in days %}
-                {% if day|date:"w" == "6" %}
+                {% if day|date:"w" == "0" %}
                     <td class="sunday" align="center">{{ forloop.counter }}</td>
-                    {#            {% if day|date:'Y-m-d' == "2020-02-01" %}#}
-                    {#                <td align="center">{{ day|date:"w" }}</td>#}
-                    {#                <td align="center">{{1}}</td>#}
+                {% elif day|date:"w" == "5"%}
+                    <td class="sunday" align="center">{{ forloop.counter }}</td> 
                 {% else %}
                     <td align="center">{{ forloop.counter }}</td>
                 {% endif %}
@@ -61,12 +65,18 @@
                     </div>
                 </td>
 
-                <td>Za</td>
+                <td><div class="third-column" align="center">Za</div></td>
 
                 {% for day, schedule in schedules_by_days.items %}
-                    <td align="center">
-                        {{ schedule.plan_day }}
-                    </td>
+                    {% if day|date:"w" == "0" %}
+                        <td class="sunday" align="center">
+                            {{ schedule.plan_day }}
+                        </td>
+                    {% else %}
+                        <td align="center">
+                            {{ schedule.plan_day }}
+                        </td>
+                    {% endif %}
                 {% endfor %}
 
             </tr>
@@ -74,11 +84,17 @@
             <tr>
                 <td></td>
                 <td>{{ employee.first_name }}</td>
-                <td>Zr</td>
+                <td><div class="third-column" align="center">Zr</div></td>
                 {% for day, schedule in schedules_by_days.items %}
-                    <td align="center">
-                        {{ schedule.done_day }}
-                    </td>
+                    {% if day|date:"w" == "0" %}
+                        <td class="sunday" align="center">
+                            {{ schedule.plan_day }}
+                        </td>
+                    {% else %}
+                        <td align="center">
+                            {{ schedule.done_day }}
+                        </td>
+                    {% endif %}
                 {% endfor %}
             </tr>
 

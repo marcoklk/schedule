@@ -5,14 +5,19 @@
   transform-origin: left 0;
   vertical-align: middle;
   horiz-align: center;
-  width: 22px;
+  width: 30px;
   height: 120px;
   display:table-cell;
 }
 
 .second-column{
-   width: 200px
+  width: 200px
 }
+
+.third-column{
+  width: 25px;
+}
+
 
 .table-border {
   border-collapse: collapse;
@@ -22,6 +27,14 @@ table, th, td {
   border: 1px solid black;
 }
 
+.column {
+  width: 15px;
+}
+
 .sunday{
   background-color: #CC3434;
+}
+
+.saturday{
+  background-color: yellow;
 }

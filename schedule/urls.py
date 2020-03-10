@@ -19,14 +19,14 @@ from django.urls import path
 from scheduler.views import AddStaffView, AddUnitView, AddShiftView, LoginView, LogoutView, GrafikView, ListUnitsView, \
     ListShiftView, ListStaffView, AddPartTimeView, AddBaseTimeView, EditUnitView, EditStaffView, AddYearScheduleView, \
     ListYearSchedulesView, FillYearScheduleView, StaffDeleteView, UnitDeleteView, ShiftDeleteView, \
-    YearScheduleDeleteView
+    YearScheduleDeleteView, EditShiftView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', GrafikView.as_view(), name="grafik"),
     path('add_staff/', AddStaffView.as_view(), name="add-staff"),
     path('add_unit/', AddUnitView.as_view(), name="add-unit"),
-    path('add_shifts/', AddShiftView.as_view(), name="add-shifts"),
+    path('add_shift/', AddShiftView.as_view(), name="add-shift"),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('list_units/', ListUnitsView.as_view(), name='list-units'),
@@ -35,11 +35,12 @@ urlpatterns = [
     path('parttime/', AddPartTimeView.as_view(), name='parttime'),
     path('basetime/', AddBaseTimeView.as_view(), name='basetime'),
     path('edit_unit/<int:pk>/', EditUnitView.as_view(), name='edit-unit'),
+    path('edit_shift/<int:pk>/', EditShiftView.as_view(), name='edit-shift'),
     path('edit_staff/<int:pk>/', EditStaffView.as_view(), name='edit-staff'),
     path('add_yearschedule/', AddYearScheduleView.as_view(), name='add-yearschedule'),
     path('list_yearschedules/', ListYearSchedulesView.as_view(), name='list-yearschedules'),
-    path('fill_yearschedule/<int:pk>', FillYearScheduleView.as_view(), name='fill-yearschedule_pk'),
-    path('fill_yearschedule/', FillYearScheduleView.as_view(), name='fill-yearschedule'),
+    # path('fill_yearschedule/<int:pk>', FillYearScheduleView.as_view(), name='fill-yearschedule_pk'),
+    path('fill_yearschedule/<int:pk>', FillYearScheduleView.as_view(), name='fill-yearschedule'),
     path('delete_staff/<int:pk>/', StaffDeleteView.as_view(), name="delete-staff"),
     path('delete_unit/<int:pk>/', UnitDeleteView.as_view(), name="delete-unit"),
     path('delete_shift/<int:pk>/', ShiftDeleteView.as_view(), name="delete-shift"),

@@ -177,6 +177,19 @@ class EditStaffView(View):
         else:
             return render(request, 'form.html', {'form': form, 'submit_value':"Zatwierdź",'title': "Edycja personelu"})
 
+class EditShiftView(View):
+    def get(self,request, pk):
+        form = EditShiftForm(instance=Shift.objects.get(pk=pk))
+        return render(request, 'form.html', {'form': form, 'submit_value': "Zatwierdź", 'title': "Edycja typu dyżuru"})
+
+    def post(self, request, pk):
+        form = EditShiftForm(request.POST,instance=Staff.objects.get(pk=pk))
+        if form.is_valid():
+            form.save()
+            return redirect('/list_shifts', {'form':form})
+        else:
+            return render(request, 'form.html', {'form': form, 'submit_value':"Zatwierdź",'title': "Edycja typu dyżuru"})
+
 
 class EditUnitView(View):
     def get(self,request, pk):
@@ -187,7 +200,7 @@ class EditUnitView(View):
         form = AddUnitForm(request.POST,instance=Unit.objects.get(pk=pk))
         if form.is_valid():
             form.save()
-            return redirect('/list_units', {'form':form})
+            return redirect('/list_unit', {'form':form})
         else:
             return render(request, 'form.html', {'form': form,'submit_value': "Zatwierdź", 'title': "Edycja jednostki organizacyjnej"})
 
@@ -218,9 +231,11 @@ class FillYearScheduleView(View):
         form = FillScheduleForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/fill_yearschedule', {'pk':pk})
+            print(pk)
+            return redirect('/fill_yearschedule/{{pk}}', {'pk':pk})
         else:
-            return redirect('/fill_yearschedule', {'pk':pk})
+            print(f'pk:{pk}')
+            return redirect('/fill_yearschedule/{pk}', {'pk':pk})
 
 
 class ListUnitsView(ListView):

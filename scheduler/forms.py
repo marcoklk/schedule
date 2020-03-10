@@ -12,7 +12,7 @@ class LoginForm(forms.Form):
 class AddStaffForm(forms.ModelForm):
     class Meta:
         model = Staff
-        exclude = ['staff_id']
+        fields = '__all__'
 
 
 class AddUnitForm(forms.ModelForm):
@@ -24,7 +24,7 @@ class AddUnitForm(forms.ModelForm):
 class AddShiftForm(forms.ModelForm):
     class Meta:
         model = Shift
-        exclude = ['shift_id']
+        fields = '__all__'
 
 
 class AddPartTimeForm(forms.ModelForm):
@@ -41,9 +41,14 @@ class AddBaseTimeForm(forms.ModelForm):
 class AddYearScheduleForm(forms.ModelForm):
     class Meta:
         model = YearSchedule
-        exclude = ['yearschedule_id']
+        fields = '__all__'
 
 class FillScheduleForm(forms.ModelForm):
     class Meta:
         model = Schedule
+        fields = '__all__'
+
+class EditShiftForm(forms.ModelForm):
+    class Meta:
+        model = Shift
         fields = '__all__'

@@ -30,6 +30,16 @@ class Staff(models.Model):
         return f'{self.first_name} {self.last_name}'
         # return u'%s %s' % (self.first_name, self.last_name)
 
+
+# jednostka organizacyjna
+class Unit(models.Model):
+    name = models.CharField(max_length=64)
+    description =  models.CharField(max_length=128)
+    code = models.CharField(max_length=4)
+
+    def __str__(self):
+        return f'{self.name}'
+
 # wymiar etatu (dokładność 4 miejsca po przecinku): od 0 do 1
 class PartTime(models.Model):
     staff = models.ForeignKey(Staff, on_delete=models.CASCADE)
@@ -50,14 +60,6 @@ class BaseTime(models.Model):
     def __str__(self):
         return f'{self.staff.first_name} {self.staff.last_name}'
 
-# jednostka organizacyjna
-class Unit(models.Model):
-    name = models.CharField(max_length=64)
-    description =  models.CharField(max_length=128)
-    code = models.CharField(max_length=4)
-
-    def __str__(self):
-        return f'{self.name}'
 
 # typy dyżurów
 class Shift(models.Model):

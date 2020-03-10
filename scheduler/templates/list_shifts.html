@@ -9,13 +9,13 @@
     {% for object in object_list%}
         <li><a href='/shifts/{{ object.pk }}'>{{object.name}}</a>
             {{ object.describe }}
-        <a href='/edit_shifts/{{ object.pk }}'>Edytuj</a>
-        <a href='/delete_shifts/{{ object.pk }}'>Kasuj</a></li>
+        <a href='/edit_shift/{{ object.pk }}'>Edytuj</a>
+        <a href='/delete_shift/{{ object.pk }}'>Kasuj</a></li>
     {%  endfor %}
     </ul>
 {% endblock %}
 {% block additional %}
     <br>
-    <li><a href='/add_shifts/'>Dodaj rodzaj dyżuru</a></li>
+    <li><a href='/add_shift/'>Dodaj rodzaj dyżuru</a></li>
     <br><br>
 {% endblock additional %}
