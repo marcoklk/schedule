@@ -45,7 +45,7 @@
                 {% if day|date:"w" == "0" %}
                     <td class="sunday" align="center">{{ forloop.counter }}</td>
                 {% elif day|date:"w" == "5"%}
-                    <td class="sunday" align="center">{{ forloop.counter }}</td> 
+                    <td class="sunday" align="center">{{ forloop.counter }}</td>
                 {% else %}
                     <td align="center">{{ forloop.counter }}</td>
                 {% endif %}
